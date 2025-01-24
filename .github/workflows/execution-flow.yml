@@ -38,6 +38,7 @@ jobs:
         id: run-tests
         run: npm run test
       - name: Upload test report
+        # steps.run-tests.outcome comes before continue-on-error, while steps.run-tests.conclusion comes after.
         if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
         uses: actions/upload-artifact@v3
         with:
